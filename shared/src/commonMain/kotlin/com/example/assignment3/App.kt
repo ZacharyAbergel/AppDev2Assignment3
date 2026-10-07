@@ -20,7 +20,6 @@ import assignment3.shared.generated.resources.Res
 import assignment3.shared.generated.resources.compose_multiplatform
 
 @Composable
-@Preview
 fun App() {
-
+    Router()
 }
