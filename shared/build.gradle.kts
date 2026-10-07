@@ -36,7 +36,18 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
+
+            implementation(
+                "io.coil-kt.coil3:coil-network-okhttp:3.6.3"
+            )
         }
+
+        jvmMain.dependencies {
+            implementation(
+                "io.coil-kt.coil3:coil-network-okhttp:3.6.3"
+            )
+        }
+
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
@@ -46,12 +57,15 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.androidx.navigation3.ui)
+
+            implementation(
+                "io.coil-kt.coil3:coil-compose:3.6.3"
+            )
         }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        commonMain.dependencies {
-            implementation(libs.androidx.navigation3.ui)
         }
     }
 }
