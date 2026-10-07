@@ -34,3 +34,33 @@ sealed class AppRoute : NavKey {
     @Serializable
     data object About : AppRoute()
 }
+
+val backStackConfig = SavedStateConfiguration {
+    serializersModule = SerializersModule {
+        polymorphic(NavKey::class) {
+            subclass(
+                AppRoute.AddGame::class,
+                AppRoute.AddGame.serializer()
+            )
+
+            subclass(
+                AppRoute.GameDetails::class,
+                AppRoute.GameDetails.serializer()
+            )
+
+            subclass(
+                AppRoute.GameBacklog::class,
+                AppRoute.GameBacklog.serializer()
+            )
+
+            subclass(
+                AppRoute.About::class,
+                AppRoute.About.serializer()
+            )
+        }
+    }
+}
+
+val LocalNavigator = compositionLocalOf<Navigator> {
+    error("No Navigator found! Wrap your UI with CompositionLocalProvider.")
+}
