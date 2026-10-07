@@ -11,6 +11,7 @@ import androidx.savedstate.serialization.SavedStateConfiguration
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
+import androidx.compose.runtime.remember
 
 @Serializable
 sealed class AppRoute : NavKey {
@@ -23,7 +24,7 @@ sealed class AppRoute : NavKey {
         val title: String,
         val platform: String,
         val genre: String,
-        val playtime: String,
+        val hoursplayed: Int,
         val imageUrl: String,
         val status: String
     ) : AppRoute()
@@ -74,7 +75,14 @@ fun Router() {
 
     val navigator = Navigator(backStack)
 
-    CompositionLocalProvider(LocalNavigator provides navigator) {
+    val gameProvider = remember {
+        GameProvider()
+    }
+
+    CompositionLocalProvider(
+        LocalNavigator provides navigator,
+        LocalGameProvider provides gameProvider
+    ) {
         NavDisplay(
             backStack = backStack,
             onBack = {
@@ -90,7 +98,7 @@ fun Router() {
                         title = route.title,
                         platform = route.platform,
                         genre = route.genre,
-                        playtime = route.playtime,
+                        hoursPlayed = route.hoursplayed,
                         imageUrl = route.imageUrl,
                         status = route.status
                     )
