@@ -64,3 +64,46 @@ val backStackConfig = SavedStateConfiguration {
 val LocalNavigator = compositionLocalOf<Navigator> {
     error("No Navigator found! Wrap your UI with CompositionLocalProvider.")
 }
+
+@Composable
+fun Router() {
+    val backStack = rememberNavBackStack(
+        backStackConfig,
+        AppRoute.AddGame
+    )
+
+    val navigator = Navigator(backStack)
+
+    CompositionLocalProvider(LocalNavigator provides navigator) {
+        NavDisplay(
+            backStack = backStack,
+            onBack = {
+                backStack.removeLastOrNull()
+            },
+            entryProvider = entryProvider {
+                entry<AppRoute.AddGame> {
+                    AddGameScreen()
+                }
+
+                entry<AppRoute.GameDetails> { route ->
+                    GameDetailsScreen(
+                        title = route.title,
+                        platform = route.platform,
+                        genre = route.genre,
+                        playtime = route.playtime,
+                        imageUrl = route.imageUrl,
+                        status = route.status
+                    )
+                }
+
+                entry<AppRoute.GameBacklog> {
+                    GameBacklogScreen()
+                }
+
+                entry<AppRoute.About> {
+                    AboutScreen()
+                }
+            }
+        )
+    }
+}
