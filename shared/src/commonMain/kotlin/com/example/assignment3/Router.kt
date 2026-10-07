@@ -11,3 +11,26 @@ import androidx.savedstate.serialization.SavedStateConfiguration
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
+
+@Serializable
+sealed class AppRoute : NavKey {
+
+    @Serializable
+    data object AddGame : AppRoute()
+
+    @Serializable
+    data class GameDetails(
+        val title: String,
+        val platform: String,
+        val genre: String,
+        val playtime: String,
+        val imageUrl: String,
+        val status: String
+    ) : AppRoute()
+
+    @Serializable
+    data object GameBacklog : AppRoute()
+
+    @Serializable
+    data object About : AppRoute()
+}
