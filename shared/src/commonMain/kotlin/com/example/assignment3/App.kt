@@ -21,5 +21,7 @@ import assignment3.shared.generated.resources.compose_multiplatform
 
 @Composable
 fun App() {
-    Router()
+    MaterialTheme {
+        Router()
+    }
 }
