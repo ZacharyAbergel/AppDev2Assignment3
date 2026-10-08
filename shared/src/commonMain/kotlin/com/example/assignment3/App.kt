@@ -19,6 +19,12 @@ import org.jetbrains.compose.resources.painterResource
 import assignment3.shared.generated.resources.Res
 import assignment3.shared.generated.resources.compose_multiplatform
 
+/**
+ * Root composable for the Game Backlog application.
+ *
+ * Delegates navigation, shared state, and screen creation to [Router].
+ * This composable is used by both the Android and Desktop entry points.
+ */
 @Composable
 fun App() {
     MaterialTheme {

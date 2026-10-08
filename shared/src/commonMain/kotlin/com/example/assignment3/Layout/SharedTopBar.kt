@@ -12,6 +12,14 @@ import androidx.compose.runtime.Composable
 import com.example.assignment3.LocalNavigator
 import org.jetbrains.compose.resources.painterResource
 
+/**
+ * Displays the application's shared top app bar.
+ *
+ * A back button is shown only when the navigation stack contains a previous
+ * destination.
+ *
+ * @param screenTitle Title displayed in the center of the app bar.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SharedTopBar(screenTitle: String) {

@@ -8,6 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.assignment3.AppRoute
 
+/**
+ * Provides the common visual structure used by every application screen.
+ *
+ * The layout places [SharedTopBar] above the content and [SharedBottomBar]
+ * below it. Scaffold padding is applied to prevent screen content from being
+ * covered by either navigation component.
+ *
+ * @param screenTitle Title displayed in the top app bar.
+ * @param currentRoute Route used to highlight the selected bottom-bar item.
+ * @param content Screen-specific content displayed between the app bars.
+ */
 @Composable
 fun MainLayout(
     screenTitle: String,

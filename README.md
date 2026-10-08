@@ -1,30 +1,64 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+# Game Backlog
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Game Backlog is a Kotlin and Compose Multiplatform application that allows
+users to organize their game collection, record hours played, and track each
+game's progress.
 
-### Running the apps
+The application runs on Android and Desktop using a shared Compose UI.
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+## Features
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- Desktop app:
-  - Hot reload: `./gradlew :desktopApp:hotRun --auto`
-  - Standard run: `./gradlew :desktopApp:run`
+- Add games to a shared backlog
+- Record title, platform, genre, hours played, cover URL, and status
+- Restrict hours played to whole numbers
+- View game details and remote cover images
+- Search games by title
+- Filter games by status
+- Sort games alphabetically or by hours played
+- Expand backlog cards to display additional actions
+- Remove games from the backlog
+- Navigate using shared top and bottom app bars
+- Run the same shared interface on Android and Desktop
 
-### Running tests
+## Technologies
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+- Kotlin
+- Kotlin Multiplatform
+- Compose Multiplatform
+- Material 3
+- Navigation 3
+- Kotlin Serialization
+- Coil 3
 
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- Desktop tests: `./gradlew :shared:jvmTest`
+## Project Structure
 
----
+- `androidApp` — Android entry point and Android resources
+- `desktopApp` — Desktop JVM entry point
+- `shared/commonMain` — shared screens, models, navigation, state, and layout
+- `shared/androidMain` — Android-specific implementation
+- `shared/jvmMain` — Desktop-specific implementation
+- `shared/commonMain/composeResources` — shared drawable resources
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## Main Components
+
+- `Router` configures Navigation 3 and connects routes to screens.
+- `Navigator` provides shared navigation operations.
+- `GameProvider` stores observable game state.
+- `MainLayout` provides the shared top and bottom navigation bars.
+- `AddGameScreen` validates and adds games.
+- `GameBacklogScreen` displays, filters, sorts, and removes games.
+- `GameDetailsScreen` displays complete information about a game.
+- `AboutScreen` describes the application and developer.
+
+## Running the Android App
+
+1. Open the project in Android Studio.
+2. Allow Gradle synchronization to complete.
+3. Start an Android emulator.
+4. Select the `androidApp` run configuration.
+5. Click Run.
+
+The Android application can also be built with:
+
+```bash
+./gradlew :androidApp:assembleDebug

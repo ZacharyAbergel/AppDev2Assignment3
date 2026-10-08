@@ -13,6 +13,14 @@ import assignment3.shared.generated.resources.ic_info
 import assignment3.shared.generated.resources.ic_sports_esports
 import org.jetbrains.compose.resources.painterResource
 
+/**
+ * Displays the primary navigation destinations used throughout the app.
+ *
+ * The selected item is determined by [currentRoute]. Selecting the current
+ * destination does not add a duplicate route to the navigation stack.
+ *
+ * @param currentRoute Route currently displayed by the application.
+ */
 @Composable
 fun SharedBottomBar(currentRoute: AppRoute) {
     val navigator = LocalNavigator.current

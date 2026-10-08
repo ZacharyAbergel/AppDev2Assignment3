@@ -42,6 +42,13 @@ import coil3.compose.AsyncImage
 import com.example.assignment3.Layout.MainLayout
 import org.jetbrains.compose.resources.painterResource
 
+/**
+ * Displays the games stored in the shared backlog.
+ *
+ * Users can search by title, filter by progress status, sort by title or
+ * hours played, expand individual cards, open game details, and remove games.
+ * The list automatically updates when [GameProvider] changes.
+ */
 @Composable
 fun GameBacklogScreen() {
     val navigator = LocalNavigator.current
@@ -63,6 +70,7 @@ fun GameBacklogScreen() {
         mutableStateOf<Int?>(null)
     }
 
+    // Apply the search, status filter, and selected sorting option in sequence.
     val displayedGames = gameProvider.games
         .filter { game ->
             game.title.contains(
@@ -86,6 +94,7 @@ fun GameBacklogScreen() {
             }
         }
 
+    // Calculate summary hours from the full collection, not the filtered list.
     val totalHours = gameProvider.games.sumOf {
         it.hoursPlayed
     }
@@ -226,6 +235,7 @@ fun GameBacklogScreen() {
                     ) {
                         items(
                             items = displayedGames,
+                            // Stable IDs allow LazyColumn to track cards when the list changes.
                             key = { game ->
                                 game.id
                             }
@@ -284,6 +294,17 @@ fun GameBacklogScreen() {
     }
 }
 
+/**
+ * Displays a summary card for one game.
+ *
+ * Selecting the card expands or collapses its actions.
+ *
+ * @param game Game represented by the card.
+ * @param expanded Whether the additional information and actions are visible.
+ * @param onExpand Called when the card is selected.
+ * @param onViewDetails Called when the details button is selected.
+ * @param onRemove Called when the remove button is selected.
+ */
 @Composable
 private fun GameBacklogCard(
     game: Game,
@@ -419,6 +440,12 @@ private fun GameBacklogCard(
     }
 }
 
+/**
+ * Displays a reusable empty-state message and corrective action.
+ *
+ * It is used when the collection is empty and when active filters produce
+ * no matching results.
+ */
 @Composable
 private fun EmptyBacklogMessage(
     title: String,

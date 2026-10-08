@@ -29,6 +29,12 @@ import assignment3.shared.generated.resources.ic_sports_esports
 import com.example.assignment3.Layout.MainLayout
 import org.jetbrains.compose.resources.painterResource
 
+/**
+ * Displays a concise introduction to the application and project information.
+ *
+ * The screen identifies the application's purpose, technologies, developer,
+ * and current version. Its content scrolls on smaller displays.
+ */
 @Composable
 fun AboutScreen() {
     MainLayout(
@@ -148,6 +154,12 @@ fun AboutScreen() {
     }
 }
 
+/**
+ * Displays one heading and corresponding information in the About card.
+ *
+ * @param heading Section heading.
+ * @param information Text displayed beneath the heading.
+ */
 @Composable
 private fun AboutInformationSection(
     heading: String,

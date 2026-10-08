@@ -32,6 +32,19 @@ import coil3.compose.AsyncImage
 import com.example.assignment3.Layout.MainLayout
 import org.jetbrains.compose.resources.painterResource
 
+/**
+ * Displays the complete information for a selected game.
+ *
+ * Coil loads the cover image from [imageUrl]. A local controller drawable is
+ * shown while loading or when the remote image cannot be loaded.
+ *
+ * @param title Name of the game.
+ * @param platform Platform on which it is played.
+ * @param genre Game genre.
+ * @param hoursPlayed Total hours entered by the user.
+ * @param imageUrl URL of the game's cover image.
+ * @param status Current backlog status.
+ */
 @Composable
 fun GameDetailsScreen(
     title: String,
@@ -170,6 +183,12 @@ fun GameDetailsScreen(
     }
 }
 
+/**
+ * Displays a labelled value in the game-information card.
+ *
+ * @param label Description of the value.
+ * @param value Game information displayed below the label.
+ */
 @Composable
 private fun GameInformationRow(
     label: String,

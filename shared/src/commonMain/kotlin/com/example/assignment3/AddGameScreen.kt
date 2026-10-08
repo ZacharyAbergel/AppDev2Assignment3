@@ -29,6 +29,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.assignment3.Layout.MainLayout
 
+/**
+ * Displays the form used to add a game to the shared backlog.
+ *
+ * Form values use [rememberSaveable] so they survive recomposition and
+ * supported state recreation. The Add Game button is enabled only when all
+ * required fields contain valid information.
+ *
+ * After a game is created, the user is taken to its details screen.
+ */
 @Composable
 fun AddGameScreen() {
     val navigator = LocalNavigator.current
@@ -58,8 +67,10 @@ fun AddGameScreen() {
         mutableStateOf("Backlog")
     }
 
+    // Convert the text field to an Int for validation and Game creation.
     val hoursPlayed = hoursPlayedText.toIntOrNull()
 
+    // Require every field and prevent negative or non-numeric playtime.
     val formIsValid =
         title.isNotBlank() &&
                 platform.isNotBlank() &&
@@ -145,6 +156,8 @@ fun AddGameScreen() {
 
                 OutlinedTextField(
                     value = hoursPlayedText,
+
+                    // Ignore non-digit input so hours can only contain a whole number.
                     onValueChange = { newValue ->
                         if (newValue.all { character ->
                                 character.isDigit()
@@ -249,6 +262,7 @@ fun AddGameScreen() {
                             hoursPlayedText.toIntOrNull()
 
                         if (validHours != null) {
+                            // Add the validated game to shared state before opening its details.
                             val newGame = gameProvider.addGame(
                                 title = title.trim(),
                                 platform = platform.trim(),
