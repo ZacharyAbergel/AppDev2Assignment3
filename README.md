@@ -62,3 +62,36 @@ The Android application can also be built with:
 
 ```bash
 ./gradlew :androidApp:assembleDebug
+
+```
+
+On Windows:
+
+```powershell
+gradlew.bat :androidApp:assembleDebug
+```
+
+## Running the Desktop App
+
+Run the Desktop configuration from Android Studio or use:
+
+```bash
+./gradlew :desktopApp:run
+```
+
+On Windows:
+
+```powershell
+gradlew.bat :desktopApp:run
+```
+
+## Current Limitation
+
+Games are stored in memory. They remain available while the application is
+running but are cleared when the application process closes.
+
+## Developer
+
+Zachary  
+Computer Science Technology  
+John Abbott College
